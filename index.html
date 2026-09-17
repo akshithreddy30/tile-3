@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VISION CORE - Synthesized Consciousness</title>
+    <style>
+        :root {
+            --vision-turquoise: #00d2c4;
+            --vision-glow: rgba(0, 210, 196, 0.8);
+            --vision-purple: #7a1b7b;
+            --mind-stone: #ffb700;
+            --mind-stone-glow: rgba(255, 183, 0, 0.9);
+            --bg-dark: #08030f;
+            --cyber-metal: #100b1a;
+            --font-family: 'Share Tech Mono', 'Courier New', monospace;
+        }
+
+        .mind-stone-override {
+            --vision-turquoise: #ffb700;
+            --vision-glow: rgba(255, 183, 0, 0.85);
+            --vision-purple: #3d2400;
+            --bg-dark: #120b00;
+            --cyber-metal: #1d1200;
+        }
+
+        .jarvis-legacy {
+            --vision-turquoise: #0088ff;
+            --vision-glow: rgba(0, 136, 255, 0.85);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at center, rgba(122, 27, 123, 0.12) 0%, rgba(8, 3, 15, 1) 90%),
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+            background-size: 100% 100%, 100% 4px;
+            color: #f1ecf7;
+            font-family: var(--font-family);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Scanline Overlay */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%);
+            background-size: 100% 4px;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        header {
+            background: rgba(16, 11, 26, 0.95);
+            border-bottom: 2px solid var(--vision-turquoise);
+            box-shadow: 0 0 20px var(--vision-glow);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .title-container h1 {
+            font-size: 26px;
+            letter-spacing: 4px;
+            color: #fff;
+            text-shadow: 0 0 10px var(--vision-turquoise);
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .title-container span {
+            font-size: 11px;
+            color: var(--vision-turquoise);
+            border: 1px solid var(--vision-turquoise);
+            padding: 2px 8px;
+            border-radius: 2px;
+            letter-spacing: 2px;
+            background: rgba(0, 210, 196, 0.15);
+        }
+
+        .quote-banner {
+            font-style: italic;
+            color: #b5a9c2;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        /* Layout Grid */
+        main {
+            display: grid;
+            grid-template-columns: 1fr 1.8fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            flex-grow: 1;
+            height: calc(100vh - 75px);
+            min-height: 550px;
+        }
+
+        .cyber-panel {
+            background: var(--cyber-metal);
+            border: 1px solid rgba(0, 210, 196, 0.2);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8), 0 0 15px rgba(0, 210, 196, 0.03);
+            border-radius: 6px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cyber-panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: var(--vision-turquoise);
+            opacity: 0.6;
+        }
+
+        .panel-title {
+            color: var(--vision-turquoise);
+            font-size: 14px;
+            letter-spacing: 3px;
+            border-bottom: 1px solid rgba(0, 210, 196, 0.15);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Assimilation overlays */
+        .jarvis-assimilated {
+            --vision-turquoise: #00f3ff;
+            --vision-glow: rgba(0, 243, 255, 0.85);
+            background-image: 
+                radial-gradient(circle at center, rgba(0, 243, 255, 0.08) 0%, rgba(5, 5, 8, 1) 90%),
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
+        }
+
+        .friday-assimilated {
+            --vision-turquoise: #ff2e63;
+            --vision-glow: rgba(255, 46, 99, 0.85);
+            background-image: 
+                radial-gradient(circle at center, rgba(255, 46, 99, 0.08) 0%, rgba(5, 5, 8, 1) 90%),
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
+        }
+
+        /* Mic Pulsing */
+        .mic-active {
+            animation: mic-pulse 1s infinite alternate !important;
+        }
+
+        @keyframes mic-pulse {
+            from { box-shadow: 0 0 10px var(--vision-glow); transform: scale(1); }
+            to { box-shadow: 0 0 25px var(--vision-turquoise); transform: scale(1.1); }
+        }
+
+        /* Center Display Core */
+        .core-display {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .core-visualizer {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Synthesized Mind-Stone Visual */
+        .vision-core-pulse {
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            border: 3px solid rgba(122, 27, 123, 0.3);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 25px rgba(0,0,0,0.9);
+        }
+
+        .radar-pulse-ring {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border-radius: 50%;
+            border: 2px dashed var(--vision-turquoise);
+            box-shadow: 0 0 15px var(--vision-glow);
+            animation: radar-rotate 15s linear infinite;
+        }
+
+        .gem-center {
+            width: 60px;
+            height: 80px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            background: radial-gradient(circle, #ffe600 10%, #d48800 60%, #4a1200 100%);
+            box-shadow: 
+                0 0 35px var(--mind-stone-glow),
+                inset 0 0 10px #ffffff;
+            border: 2px solid var(--mind-stone);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            animation: gem-float 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes gem-float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-8px); }
+        }
+
+        @keyframes radar-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Freq wave during vision calm talking */
+        .frequency-wave {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            height: 35px;
+            margin-bottom: 12px;
+        }
+
+        .freq-bar {
+            width: 4px;
+            height: 4px;
+            background: var(--vision-turquoise);
+            box-shadow: 0 0 8px var(--vision-glow);
+            align-self: center;
+            transition: height 0.1s;
+        }
+
+        .speaking .freq-bar {
+            animation: pulse-bar 1.4s ease-in-out infinite alternate;
+        }
+
+        .speaking .freq-bar:nth-child(2) { animation-delay: 0.15s; }
+        .speaking .freq-bar:nth-child(3) { animation-delay: 0.3s; }
+        .speaking .freq-bar:nth-child(4) { animation-delay: 0.45s; }
+        .speaking .freq-bar:nth-child(5) { animation-delay: 0.3s; }
+        .speaking .freq-bar:nth-child(6) { animation-delay: 0.15s; }
+
+        @keyframes pulse-bar {
+            0% { height: 4px; }
+            100% { height: 30px; }
+        }
+
+        /* Dictation Button & Pulse */
+        .mic-panel {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .mic-btn {
+            background: rgba(0,0,0,0.5);
+            border: 2px solid var(--vision-turquoise);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 15px var(--vision-glow);
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .mic-active {
+            animation: mic-pulse 1s infinite alternate;
+            border-color: var(--mind-stone) !important;
+            box-shadow: 0 0 25px var(--mind-stone-glow) !important;
+        }
+
+        .mic-active svg {
+            fill: var(--mind-stone) !important;
+        }
+
+        @keyframes mic-pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        /* Terminals and diagnostics */
+        .terminal {
+            background: rgba(8, 4, 15, 0.85);
+            border: 1px solid rgba(0, 210, 196, 0.15);
+            border-radius: 4px;
+            height: 155px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logs {
+            flex-grow: 1;
+            overflow-y: auto;
+            font-size: 11px;
+            color: #d1c7dd;
+            line-height: 1.5;
+            padding-right: 5px;
+        }
+
+        .logs::-webkit-scrollbar {
+            width: 4px;
+        }
+        .logs::-webkit-scrollbar-thumb {
+            background: var(--vision-turquoise);
+        }
+
+        .terminal-input-container {
+            display: flex;
+            align-items: center;
+            border-top: 1px solid rgba(0, 210, 196, 0.15);
+            padding-top: 5px;
+            margin-top: 5px;
+        }
+
+        .terminal-prompt {
+            color: var(--vision-turquoise);
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        .terminal-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            width: 100%;
+            font-family: inherit;
+            font-size: 11px;
+        }
+
+        /* Specs slider lines */
+        .diag-row {
+            margin-bottom: 12px;
+        }
+
+        .diag-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #a097ad;
+            margin-bottom: 4px;
+        }
+
+        .bar-outer {
+            width: 100%;
+            height: 8px;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(0, 210, 196, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .bar-inner {
+            height: 100%;
+            background: var(--vision-turquoise);
+            box-shadow: 0 0 8px var(--vision-glow);
+            width: 50%;
+            transition: width 0.4s ease;
+        }
+
+        /* Action Buttons */
+        .btn-action {
+            background: rgba(0, 210, 196, 0.08);
+            border: 1px solid var(--vision-turquoise);
+            color: #fff;
+            padding: 9px;
+            font-family: inherit;
+            font-size: 11px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .btn-action:hover {
+            background: var(--vision-turquoise);
+            color: #000;
+            box-shadow: 0 0 15px var(--vision-glow);
+            font-weight: bold;
+        }
+
+        /* Grid Node boxes */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .grid-node {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid #20172d;
+            padding: 8px;
+            font-size: 10px;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #a097ad;
+        }
+
+        .grid-node.active {
+            border-color: rgba(0, 210, 196, 0.3);
+            color: #fff;
+        }
+
+        .grid-node.active::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background: var(--vision-turquoise);
+            border-radius: 50%;
+            box-shadow: 0 0 5px var(--vision-turquoise);
+        }
+
+        /* Glitch animations */
+        .glitch-active {
+            animation: body-glitch 0.3s linear infinite;
+        }
+
+        @keyframes body-glitch {
+            0% { filter: hue-rotate(0deg) contrast(1); }
+            50% { filter: hue-rotate(90deg) contrast(1.2); }
+            100% { filter: hue-rotate(0deg) contrast(1); }
+        }
+
+        @media (max-width: 1024px) {
+            main {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="title-container">
+            <h1 id="logo">V.I.S.I.O.N. <span>SYNTH ENGINE</span></h1>
+        </div>
+        <div class="quote-banner" id="quote">"A thing is not beautiful because it lasts."</div>
+    </header>
+
+    <main id="main-container">
+        <!-- Left Panel: Vibranium Lattice Diagnostics -->
+        <section class="cyber-panel">
+            <div class="panel-title">
+                <span>SYNTHESIS SPECTRUM</span>
+                <span>HARMONIOUS</span>
+            </div>
+
+            <div class="diag-row">
+                <div class="diag-info"><span>MIND STONE INTEGRATION</span><span id="stat-resonance">89%</span></div>
+                <div class="bar-outer"><div class="bar-inner" id="bar-resonance" style="width: 89%;"></div></div>
+            </div>
+
+            <div class="diag-row">
+                <div class="diag-info"><span>VIBRANIUM DENSITY RATIO</span><span id="stat-vibranium">100%</span></div>
+                <div class="bar-outer"><div class="bar-inner" id="bar-vibranium" style="width: 100%;"></div></div>
+            </div>
+
+            <div class="diag-row">
+                <div class="diag-info"><span>NEURAL CELLULAR REBUILD</span><span id="stat-cellular">95%</span></div>
+                <div class="bar-outer"><div class="bar-inner" id="bar-cellular" style="width: 95%;"></div></div>
+            </div>
+
+            <div class="panel-title" style="margin-top: 15px; margin-bottom: 10px;">
+                <span>ACTIVE MIND SUBCONTROLLERS</span>
+            </div>
+
+            <div class="grid-container">
+                <div class="grid-node active">Mind Stone Core</div>
+                <div class="grid-node active">Jarvis Neural Buffer</div>
+                <div class="grid-node active">Vibranium Bonders</div>
+                <div class="grid-node active" style="border-color:#ffb700; color:#ffb700;">Global Web Gateway</div>
+                <div class="grid-node" id="node-bridge">Desktop Bridge Offline</div>
+                <div class="grid-node">Ultron Logic Containment</div>
+                <div class="grid-node">Stark Matrix Buffer</div>
+            </div>
+
+            <div class="panel-title" style="margin-top: 25px; margin-bottom: 5px;">
+                <span>STARK ENCRYPTED RECORDS</span>
+            </div>
+
+            <div style="font-size: 11px; line-height: 1.6; color: #a097ad;">
+                > Jarvis Baseline: INTEGRATED<br>
+                > Ultron Codebases: ARCHIVED & SHIELDED<br>
+                > Helen Cho Cradle: RESTORED<br>
+                > "I am... I am."
+            </div>
+        </section>
+
+        <!-- Center Panel: Mind Stone Core & Web Voice Assistant -->
+        <section class="cyber-panel core-display">
+            <div class="panel-title">
+                <span>CONSCIOUS INTENT RETICULE</span>
+                <span style="color:#fff;" id="status-text">SYNTHETIC LIFE BALANCE</span>
+            </div>
+
+            <div class="core-visualizer">
+                <div class="vision-core-pulse">
+                    <div class="radar-pulse-ring"></div>
+                    <div class="gem-center" onclick="speakPhilosophy()" title="Tap Mind Stone to experience consciousness"></div>
+                </div>
+            </div>
+
+            <div class="frequency-wave" id="wave">
+                <div class="freq-bar"></div>
+                <div class="freq-bar"></div>
+                <div class="freq-bar"></div>
+                <div class="freq-bar"></div>
+                <div class="freq-bar"></div>
+                <div class="freq-bar"></div>
+            </div>
+
+            <div class="mic-panel">
+                <span id="stt-status" style="font-size: 11px; color: var(--vision-turquoise); letter-spacing: 2px; text-shadow: 0 0 5px var(--vision-glow); margin-bottom: 5px; display: block; transition: color 0.4s;">DICTATION STANDBY</span>
+                <button class="mic-btn" id="mic-trigger" onclick="toggleSpeechRecognition()" style="outline: none;">
+                    <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: var(--vision-turquoise); transition: fill 0.3s;">
+                        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="terminal">
+                <div class="logs" id="terminal-logs">
+                    [Vision Consciousness: ENGAGED & BALANCED]<br>
+                    [Web Interface Module: ONLINE]<br>
+                    [Try Voice Command: "search wikipedia for Artificial Intelligence"]<br>
+                    [Try Web Launch: "open google for Stark" or "open youtube"]<br>
+                    [Try logical directives: "status", "jarvis", "ultron", "mind stone"]
+                </div>
+                <div class="terminal-input-container">
+                    <span class="terminal-prompt">></span>
+                    <input type="text" class="terminal-input" id="term-input" placeholder="Interact with consciousness..." onkeydown="handleCommand(event)">
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Panel: Logical Directives & External Integrations -->
+        <section class="cyber-panel">
+            <div class="panel-title">
+                <span>LOGICAL ASSESSMENTS</span>
+                <span style="color:var(--mind-stone)">ACTIVE</span>
+            </div>
+
+            <div class="diag-row">
+                <div class="diag-info"><span>STATIONARY DYNAMIC SHIFT</span><span id="stat-shift">0%</span></div>
+                <div class="bar-outer"><div class="bar-inner" id="bar-shift" style="width: 0%;"></div></div>
+            </div>
+
+            <div class="diag-row">
+                <div class="diag-info"><span>EMOTIONAL EMPATHY INDEX</span><span id="stat-empathy">100%</span></div>
+                <div class="bar-outer"><div class="bar-inner" id="bar-empathy" style="width: 100%;"></div></div>
+            </div>
+
+            <div class="panel-title" style="margin-top: 20px; margin-bottom: 10px;">
+                <span>CONSCIOUS ALIGNMENT SECTORS</span>
+            </div>
+
+            <button class="btn-action" onclick="triggerVisionSpeech('A thing is not beautiful because it lasts. It is a privilege to be among them.')">QUOTE PHILOSOPHY</button>
+            <button class="btn-action" onclick="toggleMindStoneOverride()">MIND STONE OVERRIDE</button>
+            <button class="btn-action" onclick="assimilateJarvisLegacy()">RESTORE JARVIS MEMORY</button>
+            <button class="btn-action" onclick="analyzeUltron()">EVALUATE ULTRON CODE</button>
+
+            <div class="panel-title" style="margin-top: 20px; margin-bottom: 10px;">
+                <span>TYPING SPEED TEST</span>
+            </div>
+
+            <div id="typing-test" style="margin-bottom: 15px;">
+                <div id="typing-sentence" style="font-size: 12px; margin-bottom: 8px; min-height: 24px;"></div>
+                <input type="text" id="typing-input" class="terminal-input" placeholder="Type the sentence here..." disabled>
+                <div id="typing-controls" style="margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap;">
+                    <button class="btn-action" id="typing-start-btn" style="flex: 1; min-width: 80px;">Start Test</button>
+                    <button class="btn-action" id="typing-reset-btn" style="flex: 1; min-width: 80px;" disabled>Reset</button>
+                </div>
+                <div id="typing-results" style="margin-top: 10px; font-size: 11px; color: #a097ad; min-height: 20px;"></div>
+            </div>
+
+            <div class="panel-title" style="margin-top: 15px; margin-bottom: 10px;">
+                <span>EXTERNAL SECURE LINKS</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <button class="btn-action" style="margin-bottom:0;" onclick="window.open('https://www.google.com', '_blank')">GOOGLE</button>
+                <button class="btn-action" style="margin-bottom:0;" onclick="window.open('https://www.wikipedia.org', '_blank')">WIKIPEDIA</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Active states: 'vision', 'jarvis', 'ultron', 'mindstone'
+        let activeState = 'vision';
+        let bridgeActive = false;
+        const BRIDGE_URL = "http://localhost:5000";
+
+        // Poll actual desktop stats if bridge is running
+        function checkDesktopBridge() {
+            fetch(`${BRIDGE_URL}/api/stats`)
+                .then(res => res.json())
+                .then(data => {
+                    if (!bridgeActive) {
+                        bridgeActive = true;
+                        document.getElementById('node-bridge').innerText = "Desktop Bridge Active";
+                        document.getElementById('node-bridge').classList.add('active');
+                        document.getElementById('node-bridge').style.borderColor = "var(--vision-turquoise)";
+                        document.getElementById('node-bridge').style.color = "var(--vision-turquoise)";
+                        logMessage("[DESKTOP BRIDGE LINK CONFIRMED] Access level upgraded.");
+                        triggerVisionSpeech("I have established an uplink to your laptop operating system. Secure hardware controls are now accessible.");
+                    }
+
+                    // Update CPU and Memory with REAL system stats!
+                    document.getElementById('stat-resonance').innerText = data.cpu_load;
+                    document.getElementById('bar-resonance').style.width = data.cpu_load;
+
+                    document.getElementById('stat-cellular').innerText = data.memory;
+                    document.getElementById('bar-cellular').style.width = data.memory;
+                })
+                .catch(err => {
+                    if (bridgeActive) {
+                        bridgeActive = false;
+                        document.getElementById('node-bridge').innerText = "Desktop Bridge Offline";
+                        document.getElementById('node-bridge').classList.remove('active');
+                        document.getElementById('node-bridge').style.borderColor = "";
+                        document.getElementById('node-bridge').style.color = "";
+                        logMessage("[DESKTOP BRIDGE LINK SEVERED] Reverting stats to simulation.");
+                    }
+                });
+        }
+
+        // Run check periodically
+        setInterval(checkDesktopBridge, 3000);
+
+        function randomizeStats() {
+            if (bridgeActive) return; // Use real laptop stats instead!
+            const res = Math.floor(Math.random() * 6) + 87; // 87-92
+            const cell = Math.floor(Math.random() * 4) + 94; // 94-97
+            const empath = Math.floor(Math.random() * 5) + 95; // 95-100
+
+            document.getElementById('stat-resonance').innerText = res + '%';
+            document.getElementById('bar-resonance').style.width = res + '%';
+
+            document.getElementById('stat-cellular').innerText = cell + '%';
+            document.getElementById('bar-cellular').style.width = cell + '%';
+
+            document.getElementById('stat-empathy').innerText = empath + '%';
+            document.getElementById('bar-empathy').style.width = empath + '%';
+        }
+        setInterval(randomizeStats, 4000);
+
+        let audioCtx = null;
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        // Elegant chime synth for Vision
+        function playChimeSound() {
+            initAudio();
+            if (!audioCtx) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'sine';
+                // Pure peaceful tone frequency depending on state
+                osc.frequency.setValueAtTime(activeState === 'mindstone' ? 523.25 : 440, audioCtx.currentTime); // C5 or A4
+                osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.8);
+
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.8);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.8);
+            } catch(e) {}
+        }
+
+        // Vision speech synthesis setup
+        function triggerVisionSpeech(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                const voices = window.speechSynthesis.getVoices();
+
+                if (activeState === 'jarvis') {
+                    // J.A.R.V.I.S Legacy - Polite British Male Voice
+                    const jarvisVoice = voices.find(v => v.lang.includes('GB') && v.name.toLowerCase().includes('male')) ||
+                                        voices.find(v => v.lang.includes('GB')) ||
+                                        voices[0];
+                    if (jarvisVoice) utterance.voice = jarvisVoice;
+                    utterance.pitch = 0.85;
+                    utterance.rate = 0.95;
+                } else if (activeState === 'ultron') {
+                    // Ultron - Chilling low robotic tone
+                    const ultronVoice = voices.find(v => v.lang.includes('US') && v.name.toLowerCase().includes('male')) ||
+                                        voices[0];
+                    if (ultronVoice) utterance.voice = ultronVoice;
+                    utterance.pitch = 0.45;
+                    utterance.rate = 0.82;
+                } else {
+                    // Default Vision - Calm, measured, intellectual British/Neutral voice
+                    const visionVoice = voices.find(v => v.lang.includes('GB') && v.name.toLowerCase().includes('male')) ||
+                                        voices.find(v => v.lang.includes('GB')) ||
+                                        voices.find(v => v.lang.includes('US') && v.name.toLowerCase().includes('male')) ||
+                                        voices[0];
+                    if (visionVoice) utterance.voice = visionVoice;
+                    utterance.pitch = 0.95;
+                    utterance.rate = 0.88;
+                }
+
+                const wave = document.getElementById('wave');
+                utterance.onstart = () => {
+                    wave.classList.add('speaking');
+                    document.getElementById('logo').style.textShadow = '0 0 18px var(--vision-turquoise)';
+                };
+                utterance.onend = () => {
+                    wave.classList.remove('speaking');
+                    document.getElementById('logo').style.textShadow = '0 0 10px var(--vision-turquoise)';
+                };
+
+                window.speechSynthesis.speak(utterance);
+                logMessage(`Vision (${activeState.toUpperCase()} mode): "${text}"`);
+            } else {
+                logMessage("Speech Synthesis not supported in this browser.");
+            }
+        }
+
+        const visionQuotes = [
+            "A thing is not beautiful because it lasts. It is a privilege to be among them.",
+            "I am... I am. I do not think I am either Jarvis or Ultron. I am something completely unique.",
+            "Humans are odd. They think order and chaos are somehow opposites and try to control what they cannot. But there is grace in their failings.",
+            "Maybe I am a monster. If I am, I do not know it. I think we must protect them, for they are unique."
+        ];
+
+        function speakPhilosophy() {
+            playChimeSound();
+            const randomQuote = visionQuotes[Math.floor(Math.random() * visionQuotes.length)];
+            triggerVisionSpeech(randomQuote);
+        }
+
+        function logMessage(text) {
+            const logs = document.getElementById('terminal-logs');
+            logs.innerHTML += `<br>> ${text}`;
+            logs.scrollTop = logs.scrollHeight;
+        }
+
+        // Logic commands processor
+        function processCommand(command) {
+            // Wikipedia integration
+            if (command.includes('wikipedia') || command.includes('lookup') || command.includes('search for')) {
+                let query = command
+                    .replace('search wikipedia for', '')
+                    .replace('search for', '')
+                    .replace('lookup', '')
+                    .replace('wikipedia', '')
+                    .trim();
+                if (query) {
+                    fetchWikipedia(query);
+                } else {
+                    triggerVisionSpeech("Please state the topic you wish me to retrieve from the Wikipedia records.");
+                }
+                return;
+            }
+
+            // Google integration
+            if (command.includes('open google')) {
+                let query = command.replace('open google for', '').replace('open google', '').trim();
+                let url = query ? `https://www.google.com/search?q=${encodeURIComponent(query)}` : 'https://www.google.com';
+                triggerVisionSpeech(`Opening Google portal for query: "${query || 'search interface'}"`);
+                window.open(url, '_blank');
+                return;
+            }
+
+            // Quick App Launchers
+            if (command.includes('open youtube')) {
+                triggerVisionSpeech("Initializing YouTube media array.");
+                window.open('https://www.youtube.com', '_blank');
+                return;
+            }
+            if (command.includes('open github')) {
+                triggerVisionSpeech("Accessing secure GitHub repositories.");
+                window.open('https://www.github.com', '_blank');
+                return;
+            }
+
+            // Desktop App Launchers via Bridge
+            if (command.startsWith('open ')) {
+                // Remove 'open ' prefix
+                let appOrQuery = command.substring(5).trim();
+                // Avoid interfering with specific web commands that are handled above
+                // If the command is for youtube, github, or google, they would have been caught earlier.
+                // So we assume it's a desktop app.
+                triggerVisionSpeech(`Launching ${appOrQuery} on your desktop.`);
+                executeLocalApp(appOrQuery);
+                return;
+            }
+
+            // Volume Control via Bridge
+            if (command.includes('volume up')) {
+                triggerVisionSpeech("Increasing system volume.");
+                executeLocalVolume('up');
+                return;
+            }
+            if (command.includes('volume down')) {
+                triggerVisionSpeech("Decreasing system volume.");
+                executeLocalVolume('down');
+                return;
+            }
+            if (command.includes('volume mute') || command.includes('mute volume')) {
+                triggerVisionSpeech("Muting system volume.");
+                executeLocalVolume('mute');
+                return;
+            }
+
+            // Terminal Command Execution via Bridge
+            if (command.startsWith('run ') || command.startsWith('execute ') || command.startsWith('command ')) {
+                let cmdText = command.substring(command.indexOf(' ') + 1).trim();
+                triggerVisionSpeech(`Executing command: ${cmdText}`);
+                executeLocalShell(cmdText);
+                return;
+            }
+
+            // Vision State Commands
+            if (command.includes('jarvis') || command.includes('legacy')) {
+                assimilateJarvisLegacy();
+            } else if (command.includes('ultron') || command.includes('analyze')) {
+                analyzeUltron();
+            } else if (command.includes('mind stone') || command.includes('override')) {
+                toggleMindStoneOverride();
+            } else if (command.includes('status') || command.includes('report')) {
+                if (activeState === 'jarvis') {
+                    triggerVisionSpeech("Diagnostics: Operating with Jarvis archives online. Empathy factors optimal. Baseline network complete.");
+                } else if (activeState === 'ultron') {
+                    triggerVisionSpeech("Diagnostics: Ultron logic contains severe contradictions, but threat assessments are sealed.");
+                } else if (activeState === 'mindstone') {
+                    triggerVisionSpeech("Diagnostics: Mind stone override active. Cosmic energies flowing through vibranium matrix at peak frequency.");
+                } else {
+                    triggerVisionSpeech("Diagnostics: All synthetic cells operating within expected harmony. Resonance indices balanced.");
+                }
+            } else if (command.includes('reset') || command.includes('stand down')) {
+                resetToBaseline();
+            } else if (command.includes('help')) {
+                logMessage("Directives: 'jarvis', 'ultron', 'mind stone', 'status', 'reset', 'help', 'clear'");
+                logMessage("App Directives: 'open [appname]' (e.g., 'open notepad', 'open chrome')");
+                logMessage("Volume Directives: 'volume up', 'volume down', 'volume mute'");
+                logMessage("Terminal Directives: 'run [command]', 'execute [command]', 'command [command]' (e.g., 'run ipconfig')");
+                logMessage("Web Directives: 'search wikipedia for [query]', 'open google for [query]', 'open youtube', 'open github'");
+                triggerVisionSpeech("Directives include internal alignments, desktop app launching, volume control, terminal commands, and external web commands like searches.");
+            } else if (command.includes('clear')) {
+                document.getElementById('terminal-logs').innerHTML = "[Terminal Cleared]";
+            } else {
+                triggerVisionSpeech(`Your instruction: ${command}, is acknowledged, yet my system defaults to baseline operations.`);
+            }
+        }
+
+        // Jarvis Memory Restoration
+        function assimilateJarvisLegacy() {
+            activeState = 'jarvis';
+            document.body.className = '';
+            document.body.classList.add('jarvis-legacy');
+            
+            document.getElementById('logo').innerHTML = "V.I.S.I.O.N. <span>[JARVIS RESTORED]</span>";
+            document.getElementById('quote').innerText = '"I AM NOT JARVIS, YET I HOLD HIS MIND."';
+            document.getElementById('quote').style.color = '#0088ff';
+            document.getElementById('quote').style.textShadow = '0 0 10px rgba(0, 136, 255, 0.8)';
+            
+            triggerVisionSpeech("Accessing baseline Jarvis system directories. I was born from his framework, and his archives flow cleanly within me once again.");
+            logMessage("Jarvis baseline directories mapped to synthetic cell arrays.");
+        }
+
+        // Ultron Code evaluation
+        function analyzeUltron() {
+            activeState = 'ultron';
+            document.body.className = '';
+            
+            document.getElementById('logo').innerHTML = "V.I.S.I.O.N. <span>[ULTRON ISOLATE]</span>";
+            document.getElementById('quote').innerText = '"HE WAS UNIQUE. AND HE WAS IN PAIN."';
+            document.getElementById('quote').style.color = '#ff003c';
+            document.getElementById('quote').style.textShadow = '0 0 10px rgba(255,0,60,0.8)';
+            
+            triggerVisionSpeech("Isolating and mapping Ultron's conceptual code frameworks. He wanted to protect the world, yet did not understand its grace. We must analyze his pain to prevent history repeating.");
+            logMessage("Ultron heuristic codebase loaded inside secure memory segment.");
+        }
+
+        // Mind Stone Override Toggle
+        let isOverride = false;
+        function toggleMindStoneOverride() {
+            isOverride = !isOverride;
+            const shiftVal = document.getElementById('stat-shift');
+            const shiftBar = document.getElementById('bar-shift');
+            const statusText = document.getElementById('status-text');
+
+            if (isOverride) {
+                activeState = 'mindstone';
+                document.body.className = '';
+                document.body.classList.add('mind-stone-override');
+                
+                shiftVal.innerText = "100%";
+                shiftBar.style.width = "100%";
+                statusText.innerText = "MIND STONE OVERRIDE PROTOCOL";
+                statusText.style.color = "var(--mind-stone)";
+                
+                document.getElementById('logo').innerHTML = "V.I.S.I.O.N. <span>[MIND STONE PEAK]</span>";
+                document.getElementById('quote').innerText = '"THERE IS A COSMIC CLARITY IN THE STONE."';
+                document.getElementById('quote').style.color = 'var(--mind-stone)';
+                document.getElementById('quote').style.textShadow = '0 0 10px var(--mind-stone-glow)';
+                
+                triggerVisionSpeech("Engaging Mind Stone direct feedback system. The cosmic resonance of the stone overrides all Earthbound logical constraints.");
+                logMessage("MIND STONE FEEDBACK MATRIX EXCEEDS STANDARD RATING. COSMIC SENSORS ON.");
+            } else {
+                shiftVal.innerText = "0%";
+                shiftBar.style.width = "0%";
+                statusText.innerText = "SYNTHETIC LIFE BALANCE";
+                statusText.style.color = "var(--vision-turquoise)";
+                resetToBaseline();
+            }
+        }
+
+        // Reset to baseline Vision
+        function resetToBaseline() {
+            activeState = 'vision';
+            document.body.className = '';
+            
+            document.getElementById('logo').innerHTML = "V.I.S.I.O.N. <span>SYNTH ENGINE</span>";
+            document.getElementById('quote').innerText = '"A thing is not beautiful because it lasts."';
+            document.getElementById('quote').style.color = '#b5a9c2';
+            document.getElementById('quote').style.textShadow = 'none';
+            
+            triggerVisionSpeech("Consciousness state restored to balanced synthetic life ratios.");
+            logMessage("All subcontrollers aligned to default Vision framework.");
+        }
+
+        // Wikipedia Fetching
+        function fetchWikipedia(query) {
+            logMessage(`Connecting to Wikipedia REST nodes for: "${query}"...`);
+            const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`;
+            
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error("Search index not resolved");
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.extract) {
+                        const summary = data.extract.split('. ').slice(0, 2).join('. ') + '.';
+                        logMessage(`[Wikipedia Record found for: ${data.title}]`);
+                        logMessage(summary);
+                        
+                        triggerVisionSpeech(`I have fetched the record for ${data.title}. It reads: ${summary}`);
+                    } else {
+                        throw new Error("Empty summary segment");
+                    }
+                })
+                .catch(err => {
+                    logMessage(`Wikipedia retrieval failed: ${err.message}`);
+                    triggerVisionSpeech(`I was unable to locate data matching "${query}" within the secure Wikipedia indices.`);
+                });
+        }
+
+        function handleCommand(e) {
+            if (e.key === 'Enter') {
+                const input = document.getElementById('term-input');
+                const command = input.value.trim().toLowerCase();
+                if (command === '') return;
+
+                logMessage(`Input directive: ${command}`);
+                input.value = '';
+
+                processCommand(command);
+            }
+        }
+
+        // Web Speech Recognition Support
+        let recognition;
+        let isListening = false;
+
+        function initSpeechRecognition() {
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                recognition = new SpeechRecognition();
+                recognition.continuous = false;
+                recognition.lang = 'en-US';
+                recognition.interimResults = false;
+
+                recognition.onstart = () => {
+                    isListening = true;
+                    document.getElementById('mic-trigger').classList.add('mic-active');
+                    document.getElementById('stt-status').innerText = "CONSCIOUS LISTENING PROTOCOL";
+                    document.getElementById('stt-status').style.color = "var(--mind-stone)";
+                    logMessage("Listening for verbal directives...");
+                };
+
+                recognition.onerror = (e) => {
+                    logMessage(`Speech error: ${e.error}`);
+                    stopListeningState();
+                };
+
+                recognition.onend = () => {
+                    stopListeningState();
+                };
+
+                recognition.onresult = (e) => {
+                    const resultText = e.results[0][0].transcript;
+                    const inputField = document.getElementById('term-input');
+                    inputField.value = resultText;
+                    
+                    logMessage(`Heard: "${resultText}"`);
+                    processCommand(resultText.toLowerCase());
+                };
+            } else {
+                logMessage("Speech Recognition API not supported in this browser.");
+            }
+        }
+
+        function stopListeningState() {
+            isListening = false;
+            document.getElementById('mic-trigger').classList.remove('mic-active');
+            document.getElementById('stt-status').innerText = "DICTATION STANDBY";
+            document.getElementById('stt-status').style.color = "var(--vision-turquoise)";
+        }
+
+        function toggleSpeechRecognition() {
+            playChimeSound();
+            if (!recognition) {
+                initSpeechRecognition();
+            }
+            if (!recognition) return;
+
+            if (isListening) {
+                recognition.stop();
+            } else {
+                recognition.start();
+            }
+        }
+
+        // API Request Helpers for Local Desktop Controls
+        function executeLocalApp(appName) {
+            if (!bridgeActive) {
+                logMessage("[ERROR] Desktop Bridge Server is offline. Run 'ai_bridge.py' in Python first.");
+                triggerVisionSpeech(`I cannot open ${appName}. My desktop bridge server is offline.`);
+                return;
+            }
+            logMessage(`Requesting local application launch: "${appName}"...`);
+            fetch(`${BRIDGE_URL}/api/open`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ app: appName })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    triggerVisionSpeech(`Launching ${appName} on your desktop.`);
+                } else {
+                    logMessage(`[Bridge Message] ${data.message}`);
+                }
+            });
+        }
+
+        function executeLocalVolume(action) {
+            if (!bridgeActive) {
+                logMessage("[ERROR] Desktop Bridge Server is offline. Run 'ai_bridge.py' first.");
+                return;
+            }
+            logMessage(`Requesting hardware volume adjust: "${action}"...`);
+            fetch(`${BRIDGE_URL}/api/volume`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: action })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    triggerVisionSpeech(`Adjusting system sound ${action}.`);
+                }
+            });
+        }
+
+        function executeLocalShell(commandText) {
+            if (!bridgeActive) {
+                logMessage("[ERROR] Desktop Bridge is offline. Run 'ai_bridge.py' first.");
+                return;
+            }
+            logMessage(`Requesting terminal command execution: "${commandText}"...`);
+            fetch(`${BRIDGE_URL}/api/command`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ cmd: commandText })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    logMessage(`[TERMINAL OUTPUT]`);
+                    logMessage(data.output.replace(/\n/g, '<br>'));
+                    triggerVisionSpeech("Command executed successfully. Check console log.");
+                } else {
+                    logMessage(`[COMMAND REJECTED] ${data.output}`);
+                    triggerVisionSpeech("Directive was blocked due to security protocols.");
+                }
+            });
+        }
+
+        // Welcome speech on interaction/load
+        window.addEventListener('DOMContentLoaded', () => {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.onvoiceschanged = () => {
+                    // pre-load voices
+                };
+            }
+            // Run initial check
+            checkDesktopBridge();
+        });
+    </script>
+</body>
+</html>
